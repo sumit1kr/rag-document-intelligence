@@ -1,0 +1,6 @@
+# Treat .env and other sensitive config as binary (avoid diffing)
+.env binary
+*.key binary
+*.db binary
+/models/* linguist-vendored
+*.pdf linguist-document

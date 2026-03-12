@@ -1,0 +1,9 @@
+app.py → interface.py → app_state.py → qa_chain.py → enhanced_query_processor.py
+                                    ↓
+                              vectorstore.py ← file_processing.py ← text_processing.py
+                                    ↓
+                              multi_hop_reasoner.py → clause_extractor.py
+                                    ↓
+                              consistency_validator.py → decision_explainer.py
+                                    ↓
+                              audit_trail.py → cache_manager.py

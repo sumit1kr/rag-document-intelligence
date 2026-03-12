@@ -1,0 +1,11 @@
+{
+  "url": "https://your-webhook-endpoint.example/webhook",
+  "events": [
+    "decision_made",
+    "error_occurred",
+    "session_started",
+    "session_ended"
+  ],
+  "configured_at": "2025-08-03T01:02:34.825964",
+  "status": "inactive"
+}

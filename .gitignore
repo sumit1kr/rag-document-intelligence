@@ -1,0 +1,33 @@
+# Ignore virtual environments
+venv/
+env/
+myenv/
+*.py[cod]
+__pycache__/
+*.log
+*.tmp
+*.DS_Store
+
+# Ignore Gradio temporary uploads
+/tmp/
+/gradio/
+/temp/
+*.sqlite3
+*.db
+
+# Ignore model cache/downloads
+/models/
+huggingface/
+
+# Ignore system files
+Thumbs.db
+.DS_Store
+
+/logs/
+# Ignore local environment files
+/templates/
+/map.txt/
+/coreflow.txt/
+# ignore models files
+/models/
+.env

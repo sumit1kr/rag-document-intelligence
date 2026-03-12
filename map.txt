@@ -1,0 +1,22 @@
+User Query ──▶ Query Interpreter (spaCy + regex, fallback: LLM)
+                     │
+                     ▼
+         ┌──────── Structured Info ───────┐
+         ▼                                ▼
+Retriever ←──── Clause Embeddings ───── Uploaded Docs
+         │
+         ▼
+LLM-based Decision Prompt:
+"Based on query: {...} and clauses: {...}, return JSON with approval, amount, and justification"
+         ▼
+Final Output JSON ➝ Gradio UI
+
+
+#Architecture for Query Processing
+User Query
+   │
+   ├──▶ Regex extractor (age, gender, duration)
+   ├──▶ spaCy NER (GPE, DATE, procedure via noun chunks)
+   └──▶ [Optional] LLM fallback (for missing fields only)
+       │
+       └── JSON output (age, gender, procedure, location, policy_duration)
