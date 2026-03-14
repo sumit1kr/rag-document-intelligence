@@ -6,7 +6,7 @@ query processing, multi-hop reasoning, and webhook integration capabilities.
 """
 
 __version__ = "1.0.0"
-__author__ = "HackRX Team"
+__author__ = "sumit1kr"
 __description__ = "AI-powered document Q&A system with RAG capabilities"
 
 # Package metadata
