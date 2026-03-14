@@ -1,169 +1,144 @@
 # rag-doc-analyzer
 
-A robust Document Q&A Assistant that uses Large Language Models (LLMs) to process natural language queries and retrieve relevant information from large unstructured documents such as policy documents, contracts, and emails.
+AI-powered Document Q&A assistant for policy, contract, email, and image documents using RAG, vector search, and LLM reasoning.
 
-## 🚀 Features
+## Features
 
-### Document Processing
-- **PDF Files**: Full text extraction with PyPDF2 and PyMuPDF fallback
-- **Word Documents**: Support for .docx and .doc files
-- **Email Files**: Processing of .eml and .msg files
-- **Text Files**: Plain text file support
-- **Images**: OCR support for PNG, JPG, JPEG files
-- **Multi-format**: Process multiple file types simultaneously
+- Multi-format document ingestion: PDF, DOCX/DOC, EML/MSG, TXT, PNG/JPG/JPEG
+- OCR support for scanned images
+- Natural language query parsing with entity extraction
+- Semantic retrieval using embeddings + Pinecone vector database
+- Multi-hop reasoning and evidence-backed decisions
+- Structured JSON response with clause/evidence mapping
+- Gradio UI + Flask API support
 
-### Query Processing
-- **Natural Language**: Handle vague, incomplete, or plain English queries
-- **Enhanced Parsing**: Extract age, gender, procedure, location, policy duration, medical conditions, urgency
-- **Query Validation**: Validate queries and provide suggestions for improvement
-- **Semantic Expansion**: Expand queries with synonyms and related terms for better retrieval
-- **Query Disambiguation**: Resolve ambiguities and provide clarifications
-- **Multi-Hop Reasoning**: Chain multiple reasoning steps for comprehensive analysis
-- **Semantic Search**: Use vector embeddings for intelligent document retrieval
-- **Decision Extraction**: Automatically extract approval/rejection status and amounts
+## Tech Stack
 
-### Output & Analysis
-- **Structured JSON**: Consistent, interpretable responses with clause mapping
-- **Evidence Mapping**: Link decisions to specific document clauses with relevance scoring
-- **Clause Extraction**: Automatic identification of policy sections and decision impacts
-- **Decision Confidence**: Calculate confidence scores based on evidence strength
-- **Audit Trail**: Track decision factors and reasoning
-- **Multi-tab Interface**: Answer, Decision Summary, and Debug views with JSON output
+- LLM: Llama-3.3-70B (Groq API)
+- Vector Database: Pinecone
+- Embeddings: HuggingFace
+- Frameworks: LangChain
+- NLP Parsing: spaCy + regex
+- UI: Gradio
+- Backend: Python (Flask APIs)
 
-## 📋 Supported File Types
+## Architecture (Diagram)
 
-| Format | Extension | Description |
-|--------|-----------|-------------|
-| PDF | `.pdf` | Policy documents, contracts, reports |
-| Word | `.docx`, `.doc` | Microsoft Word documents |
-| Email | `.eml`, `.msg` | Email messages and Outlook files |
-| Text | `.txt` | Plain text documents |
-| Images | `.png`, `.jpg`, `.jpeg` | Scanned documents with OCR |
+```mermaid
+flowchart TD
+    A[User Query] --> B[Query Parser<br/>spaCy + regex]
+    B --> C[Embedding Model<br/>HuggingFace]
+    C --> D[Vector Database<br/>Pinecone]
+    D --> E[Top-K Document Retrieval]
+    E --> F[Context + Query]
+    F --> G[LLM Reasoning<br/>Llama-3.3 via Groq API]
+    G --> H[Structured Response<br/>JSON + Evidence Mapping]
+```
 
-## 🛠️ Installation
+Architecture flow:
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/sumit1kr/rag-document-intelligence
-   cd hackrx-rag-doc-analyzer
-   ```
+User Query  
+↓  
+Query Parser (spaCy + regex)  
+↓  
+Embedding Model (HuggingFace)  
+↓  
+Vector Database (Pinecone)  
+↓  
+Top-K Document Retrieval  
+↓  
+Context + Query  
+↓  
+LLM Reasoning (Llama-3.3 via Groq API)  
+↓  
+Structured Response (JSON + Evidence Mapping)
 
-2. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+## Demo (Screenshots)
 
-3. **Set up environment variables**
-   Create a `.env` file in the `myenv` directory with:
-   ```
-   PINECONE_API_KEY=your_pinecone_key
-   GROQ_API_KEY=your_groq_key
-   HUGGINGFACE_API_KEY=your_huggingface_key
-   ```
+![Proof 1 - Application Screenshot](assets/images/fig-1.png)
+![Proof 2 - Application Screenshot](assets/images/fig-2.png)
+![Proof 3 - Application Screenshot](assets/images/fig-3.png)
+![Proof 4 - Application Screenshot](assets/images/fig-4.png)
+![Proof 5 - Application Screenshot](assets/images/fig-5.png)
+![Proof 6 - Application Screenshot](assets/images/fig-6.png)
+![Proof 7 - Application Screenshot](assets/images/fig-7.png)
 
-4. **Run the application**
-   ```bash
-   python app.py
-   ```
+## Repository Structure
 
-## 🎯 Usage
+```text
+rag-doc-analyzer/
+├── app.py
+├── README.md
+├── requirements.txt
+├── assets/
+│   └── images/
+├── docs/
+├── src/
+│   ├── api/
+│   ├── core/
+│   ├── interfaces/
+│   └── utils/
+├── templates/
+└── tests/
+```
 
-1. **Upload Documents**: Select PDF, Word, email, or text files
-2. **Enable OCR**: For image files if needed
-3. **Process & Index**: Extract and index document content
-4. **Ask Questions**: Use natural language queries like "46-year-old male, knee surgery in Pune, 3-month-old insurance policy"
-5. **Review Results**: Check the Answer, Decision Summary, and Debug tabs
+## Installation
 
-## 🔧 Architecture
+1. Clone the repository:
+```bash
+git clone https://github.com/sumit1kr/rag-document-intelligence
+cd rag-doc-analyzer
+```
 
-- **File Processing**: Multi-format document extraction
-- **Text Processing**: Cleaning, chunking, and normalization
-- **Vector Storage**: Pinecone for semantic search
-- **Query Interpretation**: spaCy + regex for structured parsing
-- **LLM Integration**: Groq's Llama 3.3-70B for reasoning
-- **Web Interface**: Gradio for beautiful, responsive UI
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-## 📊 Sample Queries
+3. Create a `.env` file in project root:
+```env
+PINECONE_API_KEY=your_pinecone_key
+GROQ_API_KEY=your_groq_key
+HUGGINGFACE_API_KEY=your_huggingface_key
+```
 
-- "46M, knee surgery, Pune, 3-month policy"
-- "Female patient, 35 years old, cataract surgery in Mumbai"
-- "Angioplasty procedure for 50-year-old male"
-- "IVF treatment coverage for 28-year-old female"
+4. Run the app:
+```bash
+python app.py
+```
 
-## 🎨 Sample Response
+## Usage
+
+1. Upload one or more documents.
+2. Enable OCR if input includes scanned images.
+3. Process and index documents.
+4. Ask natural language queries.
+5. Review answer, decision details, and evidence mapping.
+
+## Example Response
 
 ```json
 {
-  "query": {
-    "original": "46-year-old male, knee surgery in Pune, 3-month-old insurance policy",
-    "parsed": {
-      "original_query": "46-year-old male, knee surgery in Pune, 3-month-old insurance policy",
-      "query_type": "insurance_claim",
-      "extracted_entities": {}
-    }
-  },
   "decision": {
     "status": "Approved",
-    "amount": "₹50000",
+    "amount": "50000",
     "confidence": 0.85
   },
-  "justification": "Based on the policy documents, knee surgery is covered for patients aged 18-65...",
+  "justification": "Knee surgery is covered for eligible age and policy conditions.",
   "evidence": {
-    "clauses": [
-      {
-        "clause_id": "3.2",
-        "clause_text": "Section 3.2: Knee surgery is covered under the policy for patients aged 18-65...",
-        "clause_type": "approval",
-        "decision_impact": "positive",
-        "relevance_score": 0.95,
-        "decision_relevance": "high",
-        "evidence_strength": "strong",
-        "summary": "Section 3.2: Knee surgery is covered under the policy for patients aged 18-65..."
-      }
-    ],
-    "total_clauses": 4,
     "supporting_clauses": 2,
     "opposing_clauses": 0
-  },
-  "metadata": {
-    "timestamp": "2024-01-15T10:30:00",
-    "model_used": "llama-3.3-70b-versatile"
   }
 }
 ```
 
-## 🔍 Testing
+## Performance
 
-## 🖼️ Image Proof
+- Fast Top-K semantic retrieval via Pinecone
+- Improved answer quality from query parsing + multi-hop reasoning
+- Clause-level evidence mapping for auditable decisions
+- Designed to handle large, unstructured policy documents
 
-Screenshots captured from the running application:
-
-![Proof 1 - Application Screenshot](docs/proof-images/fig-1.png)
-![Proof 2 - Application Screenshot](docs/proof-images/fig-2.png)
-![Proof 3 - Application Screenshot](docs/proof-images/fig-3.png)
-![Proof 4 - Application Screenshot](docs/proof-images/fig-4.png)
-![Proof 5 - Application Screenshot](docs/proof-images/fig-5.png)
-![Proof 6 - Application Screenshot](docs/proof-images/fig-6.png)
-![Proof 7 - Application Screenshot](docs/proof-images/fig-7.png)
-
-### File Processing Test
-Run the test script to verify file processing:
-```bash
-python test_file_processing.py
-```
-
-### Structured Response Test
-Run the test script to verify structured JSON response functionality:
-```bash
-python test_structured_response.py
-```
-
-### Enhanced Query Processing Test
-Run the test script to verify enhanced query processing and multi-hop reasoning:
-```bash
-python test_enhanced_query_processing.py
-```
-
-## 📝 License
+## License
 
 This project is licensed under the MIT License.
