@@ -154,7 +154,7 @@ print('Configuration loaded successfully!')
 #### Tesseract OCR (Optional)
 \`\`\`bash
 # Download Tesseract installer from:
-# https://github.com/UB-Mannheim/tesseract/wiki
+# https://tesseract-ocr.github.io/tessdoc/Installation.html
 
 # Add to PATH environment variable
 # Default location: C:\Program Files\Tesseract-OCR
