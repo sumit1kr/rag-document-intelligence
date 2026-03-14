@@ -134,6 +134,18 @@ A robust Document Q&A Assistant that uses Large Language Models (LLMs) to proces
 
 ## 🔍 Testing
 
+## 🖼️ Image Proof
+
+Screenshots captured from the running application:
+
+![Proof 1 - Application Screenshot](docs/proof-images/fig-1.png)
+![Proof 2 - Application Screenshot](docs/proof-images/fig-2.png)
+![Proof 3 - Application Screenshot](docs/proof-images/fig-3.png)
+![Proof 4 - Application Screenshot](docs/proof-images/fig-4.png)
+![Proof 5 - Application Screenshot](docs/proof-images/fig-5.png)
+![Proof 6 - Application Screenshot](docs/proof-images/fig-6.png)
+![Proof 7 - Application Screenshot](docs/proof-images/fig-7.png)
+
 ### File Processing Test
 Run the test script to verify file processing:
 ```bash
